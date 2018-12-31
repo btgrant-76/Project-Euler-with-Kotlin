@@ -1,5 +1,7 @@
 package net.skeletonjack.projecteuler
 
+import org.slf4j.Logger
+
 /**
  * You are given the following information, but you may prefer to do some research for yourself.
  *
@@ -15,17 +17,20 @@ package net.skeletonjack.projecteuler
  * How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
  */
 fun main(args: Array<String>) {
-  val yearStart = 1901
-  val dayOfTheWeekOnWhichYearStartBegins = TUESDAY
-  val yearEnd = 2000
-  val sundaysOnTheFirstOfTheMonth =
-      countSundaysOnTheFirstOfTheMonth(yearStart, dayOfTheWeekOnWhichYearStartBegins, yearEnd)
+  trackTime(Pair(problem) {
+    val yearStart = 1901
+    val dayOfTheWeekOnWhichYearStartBegins = TUESDAY
+    val yearEnd = 2000
+    val sundaysOnTheFirstOfTheMonth =
+        countSundaysOnTheFirstOfTheMonth(yearStart, dayOfTheWeekOnWhichYearStartBegins, yearEnd)
 
-  logger.info("$sundaysOnTheFirstOfTheMonth Sundays fall on the first of the month between " +
-              "$yearStart and $yearEnd.")
+    logger.info("$sundaysOnTheFirstOfTheMonth Sundays fall on the first of the month between " +
+        "$yearStart and $yearEnd.")
+  })
 }
 
-val logger = org.slf4j.LoggerFactory.getLogger("nineteen")
+private const val problem = "nineteen"
+private val logger: Logger = org.slf4j.LoggerFactory.getLogger(problem)
 
 typealias LastDayOfMonthCalculator = (year: Int, startingDay: DayOfWeek) -> DayOfWeek
 typealias DayOfWeek = Int
